@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ChallengesWithTestsMark8
 {
@@ -7,37 +8,76 @@ namespace ChallengesWithTestsMark8
     {
         public int GetNextNumberDivisibleByN(int startNumber, int n)
         {
-            throw new NotImplementedException();
+             startNumber++;
+
+             while (startNumber % n != 0)
+             {
+                 startNumber++;
+             }
+
+             return startNumber;
         }
 
         public void ChangeNamesOfBusinessesWithNoRevenueTo_CLOSED(Business[] businesses)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < businesses.Length; i++)
+            {
+             if (businesses [i].TotalRevenue == 0)
+             {
+                businesses[i].Name = "CLOSED";
+             }
+            }
         }
 
         public bool IsAscendingOrder(int[] numbers)
         {
-            throw new NotImplementedException();
+            return numbers == null || numbers.Length == 0 ? false : !numbers.Skip(1).Select((item, index) => numbers[index] <= numbers[index + 1]).Any(x => x == false);
         }
 
         public int SumElementsThatFollowAnEven(int[] numbers)
         {
-            throw new NotImplementedException();
+            if (numbers == null || numbers.Length == 0)
+             {
+                return 0;
+             }
+            int sum = 0;
+
+            for (var i = 1; i < numbers.Length; i++)
+             {
+                if (numbers[i - 1] % 2 == 0)
+                {
+                sum += numbers[i];
+                }
+             }
+
+            return sum;       
         }
 
-        public string TurnWordsIntoSentence(string[] words)
+            public string TurnWordsIntoSentence(string[] words)
         {
-            throw new NotImplementedException();
+            return (words == null || words.Length == 0 || (words.Aggregate((x, y) => x.Trim() + " " + y.Trim()) + ".").Count() == 2) ? "" : words.Aggregate((x, y) => x.Trim() + " " + y.Trim()) + ".";
         }
 
         public double[] GetEveryFourthElement(List<double> elements)
         {
-            throw new NotImplementedException();
+            return elements == null ? new double[0] : elements.Where((item, index) => (index + 1) % 4 == 0).ToArray();
         }
 
         public bool TwoDifferentElementsInArrayCanSumToTargetNumber(int[] nums, int targetNumber)
         {
-            throw new NotImplementedException();
+            for (var i = 0; i < nums.Length; i++)
+            {
+                for (var k = i + 1; k < nums.Length; k++)
+                {
+                    if (nums[i] + nums[k] == targetNumber)
+                    {
+                        return true;
+                    }
+                }
+
+            }
+
+            return false;
         }
     }
 }
